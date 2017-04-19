@@ -91,12 +91,14 @@ class Delete extends \Magento\Backend\App\Action
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
                 return $resultRedirect->setPath('imagegallery/gallery/edit' ,
                     ['id'=>$this->getRequest()->getParam('id')]);
+
             }
         }
 
 
 
         return $resultRedirect->setPath('*/*/');
+
     }
 
     /**
@@ -112,5 +114,6 @@ class Delete extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

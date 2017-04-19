@@ -91,8 +91,6 @@ class Save extends \Magento\Backend\App\Action
 
                 $postObject->setData($post);
 
-
-
                 $array=[
 //                'image_id'=>$post['image_id'],
                     'title'=>$post['title'],
@@ -110,27 +108,26 @@ class Save extends \Magento\Backend\App\Action
 
                 $model->setData($post);
 
-
-
                 $model->save();
                 $this->messageManager->addSuccess(__('The rule has been saved.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
-                }                return $resultRedirect->setPath('*/*/');
+
+                }
+                return $resultRedirect->setPath('*/*/');
 
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $this->messageManager->addError($e->getMessage());
+
             } catch (\Exception $e) {
+
                 $this->messageManager->addError($e, __('Something went wrong while saving the rule.'));
                 $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
                 return $resultRedirect->setPath('imagegallery/image/edit' ,['id'=>$this->getRequest()->getParam('id')]);
+
             }
-
-
-
-
     }
 
     /**
@@ -181,6 +178,7 @@ class Save extends \Magento\Backend\App\Action
         }
 
         return '';
+
     }
 
     /**
@@ -189,5 +187,6 @@ class Save extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

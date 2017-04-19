@@ -54,19 +54,13 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         );
 
         $this->buttonList->update('delete', 'label', __('Delete'));
+
     }
 
     /**
      * @return \Magento\Framework\Phrase
      */
-    public function getHeaderText()
-    {
-        if ($this->_coreRegistry->registry('group')->getId()) {
-            return __("Edit Group '%1'", $this->escapeHtml($this->_coreRegistry->registry('group')->getType()));
-        } else {
-            return __('New Group');
-        }
-    }
+
 
     /**
      * Getter of url for "Save and Continue" button
@@ -76,6 +70,8 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     protected function _getSaveAndContinueUrl()
     {
+
         return $this->getUrl('imagegallery/*/save', ['_current' => true, 'back' => 'edit', 'active_tab' => '{{tab_id}}']);
+
     }
 }

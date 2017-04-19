@@ -72,5 +72,6 @@ class GroupActions extends Column
         }
 
         return $dataSource;
+
     }
 }

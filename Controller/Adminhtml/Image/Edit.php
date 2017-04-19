@@ -92,6 +92,7 @@ class Edit extends Action
             ->prepend($id ? __('Edit Image') : __('New Image'));
 
         return $resultPage;
+
     }
 
     /**
@@ -100,5 +101,6 @@ class Edit extends Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

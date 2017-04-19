@@ -92,6 +92,8 @@ class Edit extends Action
             ->prepend($id ? __('Edit Group') : __('New Group'));
 
         return $resultPage;
+
+
     }
 
     /**
@@ -100,5 +102,6 @@ class Edit extends Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

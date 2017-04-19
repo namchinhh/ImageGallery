@@ -11,6 +11,10 @@ namespace Magenest\ImageGallery\Block\Adminhtml\Gallery\Grid\Renderer;
 use Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractRenderer;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Class Image
+ * @package Magenest\ImageGallery\Block\Adminhtml\Gallery\Grid\Renderer
+ */
 class Image extends AbstractRenderer
 {
     private $_storeManager;
@@ -28,6 +32,7 @@ class Image extends AbstractRenderer
         $this->_storeManager = $storemanager;
         parent::__construct($context, $data);
         $this->_authorization = $context->getAuthorization();
+
     }
     /**
      * Renders grid column
@@ -47,6 +52,7 @@ class Image extends AbstractRenderer
             );
 
             return "<img src='".$mediaDirectory.$imagePath."' width='75' height='75'/>";
+
         }
     }
 }

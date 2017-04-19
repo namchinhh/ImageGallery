@@ -43,11 +43,13 @@ class GalleryImages extends \Magento\Backend\Block\Widget\Grid\Extended
  */
     protected function _prepareCollection()
     {
+
         $this->setCollection($this->_imageCollection);
         return parent::_prepareCollection();
+
     }
     /**
-     * Prepare grid columns
+     * Prepare image grid column
      **
     @return $this
      */
@@ -102,7 +104,7 @@ class GalleryImages extends \Magento\Backend\Block\Widget\Grid\Extended
             ]
         );
 
-
         return $this;
+
     }
 }

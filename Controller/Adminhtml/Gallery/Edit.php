@@ -42,6 +42,7 @@ class Edit extends Action
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         parent::__construct($context);
+
     }
 
     /**
@@ -53,6 +54,7 @@ class Edit extends Action
         $resultPage->setActiveMenu('Magenest_ImageGallery::gallery')
             ->addBreadcrumb(__('Manage Gallery'), __('Manage Gallery'));
         return $resultPage;
+
     }
 
     /**
@@ -73,6 +75,7 @@ class Edit extends Action
                 $resultRedirect = $this->resultRedirectFactory->create();
 
                 return $resultRedirect->setPath('*/*/');
+
             }
         }
 
@@ -92,6 +95,7 @@ class Edit extends Action
         $resultPage->getConfig()->getTitle()
             ->prepend($id ? __('Edit Gallery') : __('New Gallery'));
         return $resultPage;
+
     }
 
     /**
@@ -100,5 +104,6 @@ class Edit extends Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

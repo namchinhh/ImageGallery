@@ -4,6 +4,10 @@
  */
 namespace Magenest\ImageGallery\Block\Adminhtml\Gallery;
 
+/**
+ * Class Edit
+ * @package Magenest\ImageGallery\Block\Adminhtml\Gallery
+ */
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
     /**
@@ -59,14 +63,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     /**
      * @return \Magento\Framework\Phrase
      */
-//    public function getHeaderText()
-//    {
-//        if ($this->_coreRegistry->registry('gallery')->getId()) {
-//            return __("Edit Gallery '%1'", $this->escapeHtml($this->_coreRegistry->registry('gallery')->getType()));
-//        } else {
-//            return __('New Gallery');
-//        }
-//    }
+
 
     /**
      * Getter of url for "Save and Continue" button
@@ -76,6 +73,8 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     protected function _getSaveAndContinueUrl()
     {
+
         return $this->getUrl('imagegallery/*/save', ['_current' => true, 'back' => 'edit', 'active_tab' => '{{tab_id}}']);
+
     }
 }

@@ -72,5 +72,6 @@ class ImageActions extends Column
         }
 
         return $dataSource;
+
     }
 }

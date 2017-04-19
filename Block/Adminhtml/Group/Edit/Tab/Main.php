@@ -135,6 +135,7 @@ class Main extends Generic implements TabInterface
         $this->setForm($form);
 
         return parent::_prepareForm();
+
     }
 
     /**
@@ -144,7 +145,9 @@ class Main extends Generic implements TabInterface
      */
     public function getTabLabel()
     {
+
         return __('Group');
+
     }
 
     /**
@@ -154,7 +157,9 @@ class Main extends Generic implements TabInterface
      */
     public function getTabTitle()
     {
+
         return __('Group');
+
     }
 
     /**
@@ -162,7 +167,9 @@ class Main extends Generic implements TabInterface
      */
     public function canShowTab()
     {
+
         return true;
+
     }
 
     /**
@@ -170,7 +177,9 @@ class Main extends Generic implements TabInterface
      */
     public function isHidden()
     {
+
         return false;
+
     }
 
     /**
@@ -181,6 +190,8 @@ class Main extends Generic implements TabInterface
      */
     protected function _isAllowedAction($resourceId)
     {
+
         return $this->_authorization->isAllowed($resourceId);
+
     }
 }

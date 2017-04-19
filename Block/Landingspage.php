@@ -48,6 +48,8 @@ class Landingspage extends Template
     }
 
     /**
+     * load collection Image
+     *
      * @return mixed
      */
     public function getLoadImageCollection()

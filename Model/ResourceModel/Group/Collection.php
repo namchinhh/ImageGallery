@@ -6,6 +6,9 @@ namespace Magenest\ImageGallery\Model\ResourceModel\Group;
 class Collection extends
     \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
+    /**
+     * @var string
+     */
     protected $_idFieldName = 'id';
     /**
      * Initialize resource collection

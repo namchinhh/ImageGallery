@@ -48,7 +48,6 @@ class Js extends \Magento\Backend\Block\Template
      */
     public function getDataGroup()
     {
-//        $data=$this->_registry->registry('group');
         $data = $this->_request->getParams();
         $model = $this->group->create()->load($data['id']);
 
@@ -69,6 +68,7 @@ class Js extends \Magento\Backend\Block\Template
         }
 
         return $id;
+
     }
 
     /**
@@ -82,6 +82,7 @@ class Js extends \Magento\Backend\Block\Template
 
 
         return $result;
+
     }
 
     /**

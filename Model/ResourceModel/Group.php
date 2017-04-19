@@ -1,6 +1,11 @@
 <?php
+
 namespace Magenest\ImageGallery\Model\ResourceModel;
 
+/**
+ * Class Group
+ * @package Magenest\ImageGallery\Model\ResourceModel
+ */
 class Group extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**

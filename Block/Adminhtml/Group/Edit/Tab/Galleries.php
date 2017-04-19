@@ -47,7 +47,7 @@ class Galleries extends \Magento\Backend\Block\Widget\Grid\Extended
         return parent::_prepareCollection();
     }
     /**
-     * Prepare grid columns
+     * Prepare group grid column
      **
     @return $this
      */
@@ -80,7 +80,7 @@ class Galleries extends \Magento\Backend\Block\Widget\Grid\Extended
             ]
         );
 
-
         return $this;
+
     }
 }

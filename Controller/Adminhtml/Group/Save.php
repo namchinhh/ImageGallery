@@ -73,11 +73,9 @@ class Save extends \Magento\Backend\App\Action
 
 
         try {
-//            $postObject = new \Magento\Framework\DataObject();
-//
-//            $postObject->setData($post);
+            $postObject = new \Magento\Framework\DataObject();
 
-
+            $postObject->setData($post);
 
             $array=[
                 'gallery_id'=>$post['gallery_test'] ,
@@ -92,8 +90,6 @@ class Save extends \Magento\Backend\App\Action
 //            $model->addData($post);
             $model->addData($array);
 
-
-
             $model->save();
             $this->messageManager->addSuccess(__('The rule has been saved.'));
             $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
@@ -101,7 +97,8 @@ class Save extends \Magento\Backend\App\Action
 
             if ($this->getRequest()->getParam('back')) {
                 return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
-            }                return $resultRedirect->setPath('*/*/');
+            }
+            return $resultRedirect->setPath('*/*/');
 
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addError($e->getMessage());
@@ -110,10 +107,8 @@ class Save extends \Magento\Backend\App\Action
             $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
             $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
             return $resultRedirect->setPath('imagegallery/group/edit' ,['id'=>$this->getRequest()->getParam('id')]);
+
         }
-
-
-
 
     }
 
@@ -125,5 +120,6 @@ class Save extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

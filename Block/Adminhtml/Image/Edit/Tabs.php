@@ -20,6 +20,9 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
         $this->setTitle(__('Information'));
     }
 
+    /**
+     * prepare tab layout
+     */
     protected function _prepareLayout()
     {
         $this->addTab('general',

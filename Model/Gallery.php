@@ -5,11 +5,10 @@ namespace Magenest\ImageGallery\Model;
 /**
  * Class Gallery
  * @package Magenest\ImageGallery\Model
- * @method int getImageId()
- * @method string getImage()
+ * @method int getGalleryId()
+ * @method string getImageId()
  * @method string getTitle()
- * @method string getDescription()
- * @method int getSortorder()
+ * @method int getThumbnailId()
  * @method string getStatus()
  */
 class Gallery extends \Magento\Framework\Model\AbstractModel

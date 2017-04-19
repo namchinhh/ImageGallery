@@ -27,9 +27,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post', 'enctype' => 'multipart/form-data']]
         );
 
-
-
-
         $form->setUseContainer(true);
         $this->setForm($form);
 

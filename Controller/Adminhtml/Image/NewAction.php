@@ -42,6 +42,7 @@ class NewAction extends \Magento\Backend\App\Action
          */
         $resultForward = $this->resultForwardFactory->create();
         return $resultForward->forward('edit');
+
     }
 
     /**
@@ -50,5 +51,6 @@ class NewAction extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

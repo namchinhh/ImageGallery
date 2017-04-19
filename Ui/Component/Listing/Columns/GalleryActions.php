@@ -72,5 +72,6 @@ class GalleryActions extends Column
         }
 
         return $dataSource;
+
     }
 }

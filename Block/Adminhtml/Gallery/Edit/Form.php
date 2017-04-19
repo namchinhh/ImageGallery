@@ -14,6 +14,7 @@ namespace Magenest\ImageGallery\Block\Adminhtml\Gallery\Edit;
  */
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
+
     protected $_prepareForm;
     /**
      * Prepare form
@@ -27,12 +28,10 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post', 'enctype' => 'multipart/form-data']]
         );
 
-
-
-
         $form->setUseContainer(true);
         $this->setForm($form);
 
         return parent::_prepareForm();
+
     }
 }

@@ -97,6 +97,7 @@ class Delete extends \Magento\Backend\App\Action
 
 
         return $resultRedirect->setPath('*/*/');
+
     }
 
     /**
@@ -112,5 +113,6 @@ class Delete extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return true;
+
     }
 }

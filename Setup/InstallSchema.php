@@ -1,4 +1,5 @@
 <?php
+
 namespace Magenest\ImageGallery\Setup;
 
 /**
@@ -7,6 +8,10 @@ namespace Magenest\ImageGallery\Setup;
  */
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
+    /**
+     * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
+     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     */
     public function install(
         \Magento\Framework\Setup\SchemaSetupInterface $setup,
         \Magento\Framework\Setup\ModuleContextInterface $context
@@ -108,8 +113,10 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 10,
                 ['nullable' => false]
             );
+
         $installer->getConnection()->createTable($tableGroup);
         $installer->endSetup();
+
     }
 }
 ?>

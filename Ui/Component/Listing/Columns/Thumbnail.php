@@ -10,8 +10,15 @@ use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Class Thumbnail
+ * @package Magenest\ImageGallery\Ui\Component\Listing\Columns
+ */
 class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
 {
+    /**
+     * @var StoreManagerInterface
+     */
     protected $storeManager;
 
     /**
@@ -54,5 +61,6 @@ class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
         }
 
         return $dataSource;
+
     }
 }

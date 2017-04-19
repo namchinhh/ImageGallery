@@ -52,6 +52,7 @@ class Js extends \Magento\Backend\Block\Template
         $model = $this->gallery->create()->load($data['id']);
 
         return $model;
+
     }
 
     /**
@@ -67,6 +68,7 @@ class Js extends \Magento\Backend\Block\Template
         }
 
         return $id;
+
     }
 
     /**
@@ -89,7 +91,6 @@ class Js extends \Magento\Backend\Block\Template
         if (isset($data['id'])) {
             return 1;
         }
-
         return 2;
     }
 }
