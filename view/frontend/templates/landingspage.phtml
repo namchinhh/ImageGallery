@@ -1,0 +1,73 @@
+<?php
+$galleryCollection = $block->getLoadGalleryCollection();
+$imageCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');// can use load() method;
+$len = count($galleryCollection);
+$num = 1;
+if ($len):
+?>
+<div class="gallery_container">
+    <?php foreach ($galleryCollection as $gallery): ?>
+        <div class="wk_gallery">
+            <div id="maingallery<?php echo $num; ?>" class="wk_gallery_img_container">
+                <a href="<?php echo $this->getUrl() . 'imagegallery/index/gallery/id/' . $gallery->getGalleryId(); ?>"
+                   class="wk_gallery_album">
+                    <?php
+                    $str = $gallery->getImageId();
+                    $imageId = explode(',', $str);
+
+                    $imageCollection->load($imageId[0]);
+                    $urlImage = $this->getUrl() . 'pub/media/' . $imageCollection->getImage();
+                    ?>
+                    <img src="<?php echo $urlImage; ?>" class="wk_images wk_active wk_default" style="opacity: 1;">
+                    <?php
+                    foreach ($imageId as $image):
+                        ?>
+                        <?php
+                        $imageCollection->load($image);
+                        $urlImage = $this->getUrl() . 'pub/media/' . $imageCollection->getImage();
+                        ?>
+                        <img src="<?php echo $urlImage; ?>" class="wk_images" style="opacity: 0;">
+                    <?php endforeach; ?>
+                </a>
+            </div>
+            <div class="wk_gallery_desc"><?php echo $gallery->getTitle() . '(' . count($imageId) . ')'; ?> </div>
+        </div>
+        <?php $num++;
+    endforeach;
+    endif;
+    ?>
+</div>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            effectCycle = "";
+            $(".wk_gallery_album").on("mouseover", function () {
+                currentObject = $(this);
+                noOfImages = currentObject.find(".wk_images").length;
+                if (noOfImages > 1) {
+                    effectCycle = setInterval(function () {
+                        current = currentObject.find(".wk_active");
+                        currentIndex = current.index() + 1;
+                        if (currentIndex == noOfImages)
+                            next = currentObject.find(".wk_images").eq(0);
+                        else
+                            next = current.next();
+                        current.animate({"opacity": 0}).removeClass("wk_active");
+                        next.animate({"opacity": 1}).addClass("wk_active");
+                    }, 2000);
+                }
+            });
+            $(".wk_gallery_album").on("mouseleave", function () {
+                currentObject = $(this);
+                clearInterval(effectCycle);
+                currentObject.find(".wk_images").css("opacity", "0");
+                currentObject.find(".wk_images").removeClass("wk_active");
+                currentObject.find(".wk_images").removeClass("wk_default");
+                currentObject.find(".wk_images").eq(0).css("opacity", "1");
+                currentObject.find(".wk_images").eq(0).addClass("wk_active");
+                currentObject.find(".wk_images").eq(0).addClass("wk_default");
+            });
+        })
+    });
+</script>
+

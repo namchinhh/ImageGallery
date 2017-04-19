@@ -1,0 +1,54 @@
+<main>
+    <?php
+    $imageCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');
+    $id = $block->getRequest()->getParams();
+    $galleryId = $id['id'];  // get id of gallery;
+    $galleryCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
+    $gallery = $galleryCollection->load($galleryId);
+    $str = $gallery->getImageId();
+    $imageId = explode(',', $str);
+    $len = count($imageId);
+    ?>
+
+
+    <div class="slideshow-container">
+        <?php foreach ($imageId as $image):
+            $imageCollection->load($image);
+            ?>
+            <div class="mySlides fade">
+                <div class="numbertext"> <?php echo ($image) . "/" . $len; ?></div>
+                <img src="<?php echo $this->getUrl() . 'pub/media/' . $imageCollection->getImage(); ?>"
+                     style="width: 980px;height: 500px;">
+                <div class="text"><?php echo $imageCollection->getTitle() . " " . $imageCollection->getDescription(); ?></div>
+            </div>
+
+        <?php endforeach; ?>
+
+        <a data-action="gal-prev" class="prev" style="">&#10094;</a>
+        <a data-action="gal-next" class="next">&#10095;</a>
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <?php
+        $dotnum = 1;
+        foreach ($imageId as $image):
+            ?>
+            <a data-action="gal-currentSlide" data-ind="<?php echo $dotnum; ?>" class="dot"></a>
+            <?php $dotnum++;
+        endforeach; ?>
+
+    </div>
+</main>
+
+
+<script type="text/javascript">
+    require([
+        "jquery",
+        "Magenest_ImageGallery/js/view/gallery"
+    ], function ($, gallery) {
+
+    })
+
+</script>
+

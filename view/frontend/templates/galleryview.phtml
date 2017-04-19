@@ -1,0 +1,85 @@
+<main id="maincontent" class="page-main">
+    <a id="contentarea" tabindex="-1"></a>
+    <div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base" data-ui-id="page-title-wrapper">Gallery</span></h1>
+    </div>
+    <div class="page messages">
+        <div data-placeholder="messages"></div>
+        <div data-bind="scope: 'messages'">
+            <div data-bind="foreach: { data: cookieMessages, as: 'message' }" class="messages"></div>
+            <div data-bind="foreach: { data: messages().messages, as: 'message' }" class="messages"></div>
+        </div>
+
+    </div>
+    <div class="columns">
+        <div class="column main">
+            <input name="form_key" value="clfzQps45ZWfI4VN" type="hidden">
+            <div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+
+                <div class="wk_imagegallery_container">
+
+                    <?php
+                    $imageCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');
+                    $id = $block->getRequest()->getParams();
+                    $galleryId = $id['id'];  // get id of gallery;
+                    $galleryCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
+                    $gallery = $galleryCollection->load($galleryId);
+                    $str = $gallery->getImageId();
+                    $imageId = explode(',', $str);
+                    $len = count($imageId);
+
+                    foreach ($imageId as $image):
+                        $imageCollection->load($image);
+                        ?>
+                        <a href="<?php echo $this->getUrl() . 'pub/media/' . $imageCollection->getImage(); ?>"
+                           title="<?php echo $imageCollection->getTitle(); ?>" class="imagegallery fancybox" data-fancybox-group="gallery">
+                            <img src="<?php echo $this->getUrl() . 'pub/media/' . $imageCollection->getImage(); ?>"
+                                 class="wk_active wk_images wk_default" style="opacity:1;">
+                        </a>
+
+                    <?php endforeach; ?>
+
+                </div>
+                <script type="text/javascript">
+                    require(['jquery', 'Webkul_ImageGallery/js/gallery'], function ($) {
+                        var jsonConfig = JSON.parse('{"openEffect":"none","closeEffect":"none","loop":"1","slidecount":"1","playSpeed":"500","helpers":{"title":false,"overlay":{"css":{"background":"rgba(0, 0, 0, 0.7)"}},"thumbs":false,"buttons":"{}"},"padding":10,"autoPlay":false}');
+                        console.log(jsonConfig);
+                        $(document).ready(function () {
+                            $(".fancybox").fancybox();
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</main>
+<aside class="modal-popup popup-authentication            modal-slide            _inner-scroll fancybox-margin"
+       data-role="modal" data-type="popup" tabindex="0">
+    <div data-role="focusable-start" tabindex="0"></div>
+    <div class="modal-inner-wrap" data-role="focusable-scope">
+        <header class="modal-header">
+
+            <button class="action-close" data-role="closeBtn" type="button">
+                <span>Close</span>
+            </button>
+        </header>
+
+
+    </div>
+    <div data-role="focusable-end" tabindex="0"></div>
+</aside></div>
+<div class="fancybox-overlay fancybox-overlay-fixed" style="display: block; width: auto; height: auto;">
+    <div class="fancybox-wrap fancybox-desktop fancybox-type-image fancybox-opened" tabindex="-1"
+         style="opacity: 1; overflow: visible; height: auto; width: 319px; position: absolute; top: 141px; left: 553px;">
+        <div class="fancybox-skin" style="padding: 15px; width: auto; height: auto;">
+            <div class="fancybox-outer">
+                <div class="fancybox-inner" style="overflow: hidden; width: 289px; height: auto;"><p
+                            class="fancybox-error">The requested content cannot be loaded.<br>Please try again later.
+                    </p></div>
+                <a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a><a
+                        title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a></div>
+            <div class="fancybox-title fancybox-title-float-wrap"><span class="child">Image9</span></div>
+            <a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a></div>
+    </div>
+</div></body>

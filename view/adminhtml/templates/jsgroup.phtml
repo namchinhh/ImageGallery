@@ -1,0 +1,30 @@
+<?php /** @var $block  \Magenest\ImageGallery\Block\Adminhtml\Group\Edit\Js */ ?>
+<?php
+$_data = $block->getApplyGallery();
+//print_r($_data);
+?>
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        var useGallery = <?php echo $_data; ?>;
+        if (useGallery.length > 0) {
+            for (var i = 0; i < useGallery.length; i++) {
+                $('#id_'+useGallery[i]).attr('checked', true); // Checks it
+            }
+        }
+
+        var applyGroup = document.getElementById("page_gallery_test");
+
+        $(".checkbox").click(function(){
+            var myArray = [];
+            $.each($('input[type="checkbox"]:checked'), function() {
+                return  myArray.push($(this).val());
+            });
+            applyGroup.value = myArray;
+        });
+
+
+
+    });
+</script>
