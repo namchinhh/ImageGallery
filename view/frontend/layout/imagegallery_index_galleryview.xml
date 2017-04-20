@@ -1,21 +1,14 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      layout="2columns-left"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <title>Image Gallery</title>
         <css src="Magenest_ImageGallery::css/galleryview.css"/>
     </head>
     <body>
-
         <referenceBlock name="wishlist_sidebar" remove="true"/>
-
-
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
-
         <referenceContainer name="content">
-            <block class="Magenest\ImageGallery\Block\Landingspage"
-                   name="landingsblock" template="Magenest_ImageGallery::galleryview.phtml" >
+            <block class="Magenest\ImageGallery\Block\Landingspage" name="landingsblock" template="Magenest_ImageGallery::galleryview.phtml" >
             </block>
         </referenceContainer>
     </body>
