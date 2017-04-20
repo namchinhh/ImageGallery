@@ -241,16 +241,16 @@
                 </item>
             </argument>
         </column>
-        <column name="thumbnail_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
+        <!--<column name="thumbnail_id">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="filter" xsi:type="string">textRange</item>-->
 
-                    <item name="label" xsi:type="string" translate="true">Thumbnail Image ID</item>
-                    <item name="sortOrder" xsi:type="number">50</item>
-                </item>
-            </argument>
-        </column>
+                    <!--<item name="label" xsi:type="string" translate="true">Thumbnail Image ID</item>-->
+                    <!--<item name="sortOrder" xsi:type="number">50</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+        <!--</column>-->
         <column name="status">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Magenest\ImageGallery\Model\Config\Source\Status</item>

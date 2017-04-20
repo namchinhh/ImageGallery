@@ -28,15 +28,15 @@
                 action="imagegallery/gallery"
                 resource="Magenest_ImageGallery::gallery"
         />
-        <add
-                id="Magenest_ImageGallery::managegroup"
-                title="Manage Group "
-                module="Magenest_ImageGallery"
-                sortOrder="30"
-                parent="Magenest_ImageGallery::imagegallery"
-                action="imagegallery/group"
-                resource="Magenest_ImageGallery::group"
-        />
+        <!--<add-->
+                <!--id="Magenest_ImageGallery::managegroup"-->
+                <!--title="Manage Group "-->
+                <!--module="Magenest_ImageGallery"-->
+                <!--sortOrder="30"-->
+                <!--parent="Magenest_ImageGallery::imagegallery"-->
+                <!--action="imagegallery/group"-->
+                <!--resource="Magenest_ImageGallery::group"-->
+        <!--/>-->
         <add
                 id="Magenest_ImageGallery::gallerysetting"
                 title="Gallery Settings"
@@ -47,5 +47,4 @@
                 resource="Magenest_ImageGallery::gallerysetting"
         />
     </menu>
-
 </config>

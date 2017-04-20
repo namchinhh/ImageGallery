@@ -13,70 +13,13 @@
             <group id="gallerypage" translate="label" type="text" sortOrder="1"
                    showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Gallery Settings</label>
-
-                <field id="opening_effect" translate="label" type="select"
-                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Opening Effect</label>
-                    <source_model>Magenest\ImageGallery\Model\Config\Source\Effect</source_model>
-                </field>
-                <field id="closing_effect" translate="label" type="select"
-                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Closing Effect</label>
-                    <source_model>Magenest\ImageGallery\Model\Config\Source\Effect</source_model>
-                </field>
-                <field id="caption" translate="label" type="select"
-                       sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Caption</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="caption_type" translate="label" type="select"
-                       sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Caption Type</label>
-                    <source_model>Magenest\ImageGallery\Model\Config\Source\CaptionType</source_model>
-                    <comment>'float' and 'over' works with position 'bottom'.</comment>
-                </field>
-                <field id="caption_position" translate="label" type="select"
-                       sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Caption Position</label>
-                    <source_model>Magenest\ImageGallery\Model\Config\Source\CaptionPosition</source_model>
-                </field>
-                <field id="background" translate="label" type="select"
-                       sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Background</label>
-                    <source_model>Magenest\ImageGallery\Model\Config\Source\Background</source_model>
-                </field>
-                <field id="cyclic" translate="label" type="select"
-                       sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Cyclic</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="interval" translate="label" type="text"
-                       sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Interval</label>
-                </field>
-                <field id="border" translate="label" type="select"
-                       sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Border</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="slidecount" translate="label" type="select"
-                       sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Slidecount</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="controls" translate="label" type="select"
-                       sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Controls</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-
                 <field id="verticaldimension" translate="label" type="text"
-                       sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Vertical Dimension (%)</label>
                 </field>
 
                 <field id="horizontaldimension" translate="label" type="text"
-                       sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Horizontal Dimension (%)</label>
                 </field>
             </group>

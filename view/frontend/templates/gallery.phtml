@@ -1,29 +1,11 @@
 <main>
     <?php
-    $imageCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');
-    $id = $block->getRequest()->getParams();
-    $galleryId = $id['id'];  // get id of gallery;
-    $galleryCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
-    $gallery = $galleryCollection->load($galleryId);
-    $str = $gallery->getImageId();
-    $imageIdAll = explode(',', $str);
-    $imageId=[];
-    foreach ($imageIdAll as $image){
-        if($imageCollection->load($image)->getStatus()==0){
-            array_push($imageId,$image);
-        }
-    }
+    $imageCollection=$block->getLoadImageCollection();
+    $galleryCollection = $block->getLoadGalleryCollection();
+    $imageId=$block->getImageId();
     $len = count($imageId);
     $num=1;
-//    $ver=$this->scopeConfig->getValue('magenest/imagegallery/verticaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-//    $hor=$this->scopeConfig->getValue('magenest/imagegallery/horizontaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-//    $helper = $this->objectManager->create('Magenest\ImageGallery\Helper\Data');
-//    print_r($helper->getImageGallerylConfig('verticaldimension'));
-    $ver=$block->getVerticalConfig();
-    print_r($ver);
     ?>
-
-
     <div class="slideshow-container">
         <?php foreach ($imageId as $image):
             $imageCollection->load($image);
@@ -31,10 +13,10 @@
             <div class="mySlides fade">
                 <div class="numbertext"> <?php echo ($num) . "/" . $len; ?></div>
                 <img src="<?php echo $this->getUrl() . 'pub/media/' . $imageCollection->getImage(); ?>"
-                     style="width: 980px;height: 500px;">
+                     style="width: <?php echo $block->getVerticalConfig(); ?>%;height: <?php echo $block->getHorizontalConfig(); ?>%;">
+                <br><br><br><br>
                 <div class="text"><?php echo $imageCollection->getTitle() . " " . $imageCollection->getDescription(); ?></div>
             </div>
-
         <?php
         $num++;
         endforeach; ?>
@@ -43,7 +25,6 @@
         <a data-action="gal-next" class="next">&#10095;</a>
     </div>
     <br>
-
     <div style="text-align:center">
         <?php
         $dotnum = 1;
@@ -55,15 +36,11 @@
 
     </div>
 </main>
-
-
 <script type="text/javascript">
     require([
         "jquery",
         "Magenest_ImageGallery/js/view/gallery"
     ], function ($, gallery) {
-
     })
-
 </script>
 

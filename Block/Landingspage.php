@@ -10,13 +10,16 @@ use Magento\Framework\View\Element\Template;
  */
 class Landingspage extends Template
 {
-    private $_imageCollectionFactory;
-
+    /**
+     * @var \Magenest\ImageGallery\Model\GalleryFactory
+     */
     protected $_galleryCollectionFactory;
 
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
     protected $scopeConfig;
 
-    const XML_PATH_VER = 'magenest/imagegallery/verticaldimension';
     /**
      * Landingspage constructor.
      * @param Template\Context $context
@@ -26,13 +29,11 @@ class Landingspage extends Template
      */
     public function __construct(
     Template\Context $context, array $data = [],
-    \Magenest\ImageGallery\Model\ImageFactory $imageCollectionFactory,
     \Magenest\ImageGallery\Model\GalleryFactory $galleryCollectionFactory,
     \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     ) {
         parent::__construct($context, $data);
         $this->scopeConfig = $scopeConfig;
-        $this->_imageCollectionFactory = $imageCollectionFactory;
         $this->_galleryCollectionFactory =$galleryCollectionFactory;
     }
 
@@ -59,27 +60,84 @@ class Landingspage extends Template
      */
     public function getLoadImageCollection()
     {
-        $collection=$this->_imageCollectionFactory->create()->getCollection();
+        $imageCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');
 
-        return $collection;
+        return $imageCollection;
     }
 
     /**
-     * load collection gallery
+     * load collection all gallery
      *
      * @return mixed
      */
-    public function getLoadGalleryCollection()
+    public function getLoadAllGalleryCollection()
     {
         $collection=$this->_galleryCollectionFactory->create()->getCollection();
 
         return $collection;
     }
 
-    public function getVerticalConfig()
+    /**
+     * load collection gallery for gallery page
+     *
+     * @return mixed
+     */
+    public function getLoadGalleryCollection()
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(self::XML_PATH_VER, $storeScope);
+        $galleryCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
+        return $galleryCollection;
 
     }
+
+    /**
+     * load vertical dimension in store config to set style for image
+     *
+     * @return mixed
+     */
+    public function getVerticalConfig()
+    {
+        $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magento\Framework\App\Config\ScopeConfigInterface');
+        $ver =  $model->getValue('imagegallery/gallerypage/verticaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        return $ver;
+
+    }
+
+    /**
+     * load horizontal dimension in store config to set style for image
+     *
+     * @return mixed
+     */
+    public function getHorizontalConfig()
+    {
+        $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magento\Framework\App\Config\ScopeConfigInterface');
+        $hor =  $model->getValue('imagegallery/gallerypage/horizontaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        return $hor;
+
+    }
+
+    /**
+     * get gallery_id from url and return image_id of gallery
+     *
+     * @return array
+     */
+    public function getImageId()
+    {
+        $id = $this->getRequest()->getParams();
+        $galleryId = $id['id'];  // get id of gallery;
+        $galleryCollection=$this->getLoadGalleryCollection();
+        $gallery = $galleryCollection->load($galleryId);
+        $str = $gallery->getImageId();
+        $imageIdAll = explode(',', $str);
+        $imageId=[];
+
+        foreach ($imageIdAll as $image){
+            if($this->getLoadImageCollection()->load($image)->getStatus()==0){ //just show what images are enable
+                array_push($imageId,$image);
+            }
+        }
+        return $imageId;
+
+
+    }
+
 }
