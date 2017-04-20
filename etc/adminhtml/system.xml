@@ -13,6 +13,7 @@
             <group id="gallerypage" translate="label" type="text" sortOrder="1"
                    showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Gallery Settings</label>
+
                 <field id="opening_effect" translate="label" type="select"
                        sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Opening Effect</label>
@@ -67,6 +68,16 @@
                        sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Controls</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="verticaldimension" translate="label" type="text"
+                       sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vertical Dimension (%)</label>
+                </field>
+
+                <field id="horizontaldimension" translate="label" type="text"
+                       sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Horizontal Dimension (%)</label>
                 </field>
             </group>
         </section>

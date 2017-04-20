@@ -73,18 +73,16 @@ class Save extends \Magento\Backend\App\Action
 
 
         try {
-//            $postObject = new \Magento\Framework\DataObject();
-//
-//            $postObject->setData($post);
-
-
+            $postObject = new \Magento\Framework\DataObject();
+            $postObject->setData($post);
 
             $array=[
-                'image_id'=>$post['image_id'] ,
+                'image_id'=>isset($post['image_id']) ? $post['image_id'] : null ,
                 'title'=>isset($post['titleGallery']) ? $post['titleGallery'] : null ,
                 'thumbnail_id'=>isset($post['thumbnail_id'] )? $post['thumbnail_id'] : null ,
                 'status'=>isset($post['status']) ? $post['status'] : null
             ];
+
             $model = $this->_objectManager->create('Magenest\ImageGallery\Model\Gallery');
             if(isset($post['gallery_id']))
             {
@@ -98,7 +96,8 @@ class Save extends \Magento\Backend\App\Action
             $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
             if ($this->getRequest()->getParam('back')) {
                 return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
-            }                return $resultRedirect->setPath('*/*/');
+            }
+            return $resultRedirect->setPath('*/*/');
 
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             $this->messageManager->addError($e->getMessage());

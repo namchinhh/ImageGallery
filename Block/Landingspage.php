@@ -14,6 +14,9 @@ class Landingspage extends Template
 
     protected $_galleryCollectionFactory;
 
+    protected $scopeConfig;
+
+    const XML_PATH_VER = 'magenest/imagegallery/verticaldimension';
     /**
      * Landingspage constructor.
      * @param Template\Context $context
@@ -24,9 +27,11 @@ class Landingspage extends Template
     public function __construct(
     Template\Context $context, array $data = [],
     \Magenest\ImageGallery\Model\ImageFactory $imageCollectionFactory,
-    \Magenest\ImageGallery\Model\GalleryFactory $galleryCollectionFactory
+    \Magenest\ImageGallery\Model\GalleryFactory $galleryCollectionFactory,
+    \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     ) {
         parent::__construct($context, $data);
+        $this->scopeConfig = $scopeConfig;
         $this->_imageCollectionFactory = $imageCollectionFactory;
         $this->_galleryCollectionFactory =$galleryCollectionFactory;
     }
@@ -71,4 +76,10 @@ class Landingspage extends Template
         return $collection;
     }
 
+    public function getVerticalConfig()
+    {
+        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        return $this->scopeConfig->getValue(self::XML_PATH_VER, $storeScope);
+
+    }
 }

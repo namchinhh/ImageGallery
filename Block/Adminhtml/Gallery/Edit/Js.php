@@ -48,9 +48,14 @@ class Js extends \Magento\Backend\Block\Template
      */
     public function getDataGallery()
     {
-        $data = $this->_request->getParams();
-        $model = $this->gallery->create()->load($data['id']);
 
+        $data = $this->_request->getParams();
+        if($data){
+            $model = $this->gallery->create()->load($data['id']);
+        }
+        else{
+            $model = $this->gallery->create();
+        }
         return $model;
 
     }

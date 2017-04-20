@@ -14,5 +14,6 @@
         <referenceContainer name="js">
             <block class="Magenest\ImageGallery\Block\Adminhtml\Gallery\Edit\Js" template="js.phtml"/>
         </referenceContainer>
+
     </body>
 </page>

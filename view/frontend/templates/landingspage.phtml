@@ -6,18 +6,34 @@ $num = 1;
 if ($len):
 ?>
 <div class="gallery_container">
-    <?php foreach ($galleryCollection as $gallery): ?>
+    <?php foreach ($galleryCollection as $gallery):
+        if($gallery->getStatus()==0):
+            $str = $gallery->getImageId();
+            $imageIdAll = explode(',', $str);
+            $imageId=[];
+            if(count($imageIdAll)==1 && $imageCollection->load($imageIdAll[0])->getStatus()==1)
+                continue;
+            foreach ($imageIdAll as $image){
+
+                if($imageCollection->load($image)->getStatus()==1){
+                    continue;
+                }
+                array_push($imageId,$image);
+            }
+            ?>
+
         <div class="wk_gallery">
             <div id="maingallery<?php echo $num; ?>" class="wk_gallery_img_container">
                 <a href="<?php echo $this->getUrl() . 'imagegallery/index/gallery/id/' . $gallery->getGalleryId(); ?>"
                    class="wk_gallery_album">
+
                     <?php
-                    $str = $gallery->getImageId();
-                    $imageId = explode(',', $str);
+
 
                     $imageCollection->load($imageId[0]);
                     $urlImage = $this->getUrl() . 'pub/media/' . $imageCollection->getImage();
                     ?>
+
                     <img src="<?php echo $urlImage; ?>" class="wk_images wk_active wk_default" style="opacity: 1;">
                     <?php
                     foreach ($imageId as $image):
@@ -33,6 +49,7 @@ if ($len):
             <div class="wk_gallery_desc"><?php echo $gallery->getTitle() . '(' . count($imageId) . ')'; ?> </div>
         </div>
         <?php $num++;
+        endif;
     endforeach;
     endif;
     ?>

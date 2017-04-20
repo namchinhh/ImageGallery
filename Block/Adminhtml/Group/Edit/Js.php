@@ -49,7 +49,12 @@ class Js extends \Magento\Backend\Block\Template
     public function getDataGroup()
     {
         $data = $this->_request->getParams();
-        $model = $this->group->create()->load($data['id']);
+        if($data){
+            $model = $this->group->create()->load($data['id']);
+
+        }else{
+            $model = $this->group->create();
+        }
 
         return $model;
 

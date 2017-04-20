@@ -2,6 +2,7 @@
 /**
  * Created by PhpStorm.
  */
+
 namespace Magenest\ImageGallery\Controller\Adminhtml\Image;
 
 use \Magento\Backend\App\Action\Context;
@@ -52,7 +53,8 @@ class Save extends \Magento\Backend\App\Action
         RequestInterface $request,
         Filesystem $filesystem,
         UploaderFactory $fileUploaderFactory
-    ) {
+    )
+    {
 
         $this->_request = $request;
         $this->_filesystem = $filesystem;
@@ -74,60 +76,61 @@ class Save extends \Magento\Backend\App\Action
         }
         $image = $this->saveBackGround($_FILES['image'], $post['image']);
         if (is_array($post['image']) && !empty($post['image'])) {
-            $post['image'] =  $post['image']['value'];
+            $post['image'] = $post['image']['value'];
         }
         if ($image == 'deleted' || $image == '') {
             $post['image'] = null;
         } else {
             $post['image'] = $image;
         }
-            if (!$post) {
+        if (!$post) {
 
-                return $resultRedirect->setPath('imagegallery/image/');
-            }
+            return $resultRedirect->setPath('imagegallery/image/');
+        }
 
-            try {
-                $postObject = new \Magento\Framework\DataObject();
+        try {
+            $postObject = new \Magento\Framework\DataObject();
 
-                $postObject->setData($post);
+            $postObject->setData($post);
 
-                $array=[
+            $array = [
 //                'image_id'=>$post['image_id'],
-                    'title'=>$post['title'],
+                'title' => $post['title'],
 //                'image'=>$post['image'],
-                    'description'=>$post['description'],
-                    'sortorder'=>$post['sortorder'],
-                    'status'=>$post['status']
-                ];
-                $model = $this->_objectManager->create('Magenest\ImageGallery\Model\Image');
-                if(isset($post['image_id']))
-                {
-                    $model->load($post['image_id']);
-                }
-                $model->addData($array);
+                'description' => $post['description'],
+                'sortorder' => $post['sortorder'],
+                'status' => $post['status']
 
-                $model->setData($post);
+            ];
+            $model = $this->_objectManager->create('Magenest\ImageGallery\Model\Image');
+            if (isset($post['image_id'])) {
+                $model->load($post['image_id']);
+            }
 
-                $model->save();
-                $this->messageManager->addSuccess(__('The rule has been saved.'));
-                $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
-                if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
+            $model->addData($array);
 
-                }
-                return $resultRedirect->setPath('*/*/');
+            $model->setData($post);
 
-            } catch (\Magento\Framework\Exception\LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
-
-            } catch (\Exception $e) {
-
-                $this->messageManager->addError($e, __('Something went wrong while saving the rule.'));
-                $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
-                $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
-                return $resultRedirect->setPath('imagegallery/image/edit' ,['id'=>$this->getRequest()->getParam('id')]);
+            $model->save();
+            $this->messageManager->addSuccess(__('The rule has been saved.'));
+            $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
+            if ($this->getRequest()->getParam('back')) {
+                return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId(), '_current' => true]);
 
             }
+            return $resultRedirect->setPath('*/*/');
+
+        } catch (\Magento\Framework\Exception\LocalizedException $e) {
+            $this->messageManager->addError($e->getMessage());
+
+        } catch (\Exception $e) {
+
+            $this->messageManager->addError($e, __('Something went wrong while saving the rule.'));
+            $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
+            $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
+            return $resultRedirect->setPath('imagegallery/image/edit', ['id' => $this->getRequest()->getParam('id')]);
+
+        }
     }
 
     /**
@@ -167,7 +170,7 @@ class Save extends \Magento\Backend\App\Action
                 $uploader->setAllowRenameFiles(false);
                 $result = $uploader->save($path);
                 if (is_array($result) && !empty($result['name'])) {
-                    return 'imagegallery/template/'.$result['name'];
+                    return 'imagegallery/template/' . $result['name'];
                 }
             } catch (\Exception $e) {
                 if ($e->getCode() != Uploader::TMP_NAME_EMPTY) {

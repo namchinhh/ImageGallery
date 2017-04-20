@@ -14,6 +14,7 @@ namespace Magenest\ImageGallery\Block\Adminhtml\Group\Edit;
  */
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
+
     protected $_prepareForm;
     /**
      * Prepare form
@@ -31,5 +32,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         $this->setForm($form);
 
         return parent::_prepareForm();
+
     }
 }

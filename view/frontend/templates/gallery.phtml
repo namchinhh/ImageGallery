@@ -6,8 +6,21 @@
     $galleryCollection = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
     $gallery = $galleryCollection->load($galleryId);
     $str = $gallery->getImageId();
-    $imageId = explode(',', $str);
+    $imageIdAll = explode(',', $str);
+    $imageId=[];
+    foreach ($imageIdAll as $image){
+        if($imageCollection->load($image)->getStatus()==0){
+            array_push($imageId,$image);
+        }
+    }
     $len = count($imageId);
+    $num=1;
+//    $ver=$this->scopeConfig->getValue('magenest/imagegallery/verticaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+//    $hor=$this->scopeConfig->getValue('magenest/imagegallery/horizontaldimension', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+//    $helper = $this->objectManager->create('Magenest\ImageGallery\Helper\Data');
+//    print_r($helper->getImageGallerylConfig('verticaldimension'));
+    $ver=$block->getVerticalConfig();
+    print_r($ver);
     ?>
 
 
@@ -16,13 +29,15 @@
             $imageCollection->load($image);
             ?>
             <div class="mySlides fade">
-                <div class="numbertext"> <?php echo ($image) . "/" . $len; ?></div>
+                <div class="numbertext"> <?php echo ($num) . "/" . $len; ?></div>
                 <img src="<?php echo $this->getUrl() . 'pub/media/' . $imageCollection->getImage(); ?>"
                      style="width: 980px;height: 500px;">
                 <div class="text"><?php echo $imageCollection->getTitle() . " " . $imageCollection->getDescription(); ?></div>
             </div>
 
-        <?php endforeach; ?>
+        <?php
+        $num++;
+        endforeach; ?>
 
         <a data-action="gal-prev" class="prev" style="">&#10094;</a>
         <a data-action="gal-next" class="next">&#10095;</a>

@@ -91,7 +91,6 @@ class Edit extends Action
         // 5. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
-//        $resultPage->getConfig()->getTitle()->prepend(__('New Gallery'));
         $resultPage->getConfig()->getTitle()
             ->prepend($id ? __('Edit Gallery') : __('New Gallery'));
         return $resultPage;
