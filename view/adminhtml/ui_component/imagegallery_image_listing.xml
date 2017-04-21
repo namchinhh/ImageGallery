@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
@@ -10,9 +15,9 @@
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New</item>
+                <item name="label" xsi:type="string" translate="true">Add New Image</item>
                 <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/newAction</item>
+                <item name="url" xsi:type="string">*/*/new</item>
             </item>
         </item>
     </argument>
@@ -34,84 +39,6 @@
             </item>
         </argument>
     </dataSource>
-
-
-    <container name="listing_top">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="template" xsi:type="string">ui/grid/toolbar</item>
-            </item>
-        </argument>
-        <bookmark name="bookmarks">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="namespace" xsi:type="string">imagegallery_image_listing</item>
-                    </item>
-                </item>
-            </argument>
-        </bookmark>
-        <component name="columns_controls">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="columnsData" xsi:type="array">
-                        <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.imagegallery_image_columns</item>
-                    </item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
-                    <item name="displayArea" xsi:type="string">dataGridActions</item>
-                </item>
-            </argument>
-        </component>
-        <exportButton name="export_button">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.imagegallery_image_columns.ids</item>
-                </item>
-            </argument>
-        </exportButton>
-        <filterSearch name="fulltext">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing_data_source</item>
-                    <item name="chipsProvider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.listing_top.listing_filters_chips</item>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.listing_top.bookmarks</item>
-                        <item name="namespace" xsi:type="string">current.search</item>
-                    </item>
-                </item>
-            </argument>
-        </filterSearch>
-        <filters name="listing_filters">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="columnsProvider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.imagegallery_image_columns</item>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.listing_top.bookmarks</item>
-                        <item name="namespace" xsi:type="string">current.filters</item>
-                    </item>
-                    <item name="childDefaults" xsi:type="array">
-                        <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.listing_top.listing_filters</item>
-                        <item name="imports" xsi:type="array">
-                            <item name="visible" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.imagegallery_image_columns.${ $.index }:visible</item>
-                        </item>
-                    </item>
-                </item>
-            </argument>
-        </filters>
-
-        <paging name="listing_paging">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.listing_top.bookmarks</item>
-                        <item name="namespace" xsi:type="string">current.paging</item>
-                    </item>
-                    <item name="selectProvider" xsi:type="string">imagegallery_image_listing.imagegallery_image_listing.imagegallery_image_columns.ids</item>
-                </item>
-            </argument>
-        </paging>
-    </container>
-
     <listingToolbar name="listing_top">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -142,14 +69,14 @@
                     <item name="0" xsi:type="array">
                         <item name="type" xsi:type="string">enable</item>
                         <item name="label" xsi:type="string" translate="true">Enable</item>
-                        <item name="url" xsi:type="url" path="imagegallery/image/massStatus">
+                        <item name="url" xsi:type="url" path="*/*/massStatus">
                             <param name="status">0</param>
                         </item>
                     </item>
                     <item name="1" xsi:type="array">
                         <item name="type" xsi:type="string">disable</item>
                         <item name="label" xsi:type="string" translate="true">Disable</item>
-                        <item name="url" xsi:type="url" path="imagegallery/image/massStatus">
+                        <item name="url" xsi:type="url" path="*/*/massStatus">
                             <param name="status">1</param>
                         </item>
                     </item>
@@ -160,7 +87,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="*/*/massDelete"/>
+                        <item name="url" xsi:type="url" path="imagegallery/image/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete Queue(s)</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure to delete selected queue(s)?</item>
@@ -170,8 +97,6 @@
             </action>
         </massaction>
     </listingToolbar>
-
-
     <columns name="imagegallery_image_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">

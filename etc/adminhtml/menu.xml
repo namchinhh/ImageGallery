@@ -11,7 +11,7 @@
                 resource="Magenest_ImageGallery::imagegallery"
         />
         <add
-                id="Magenest_ImageGallery::manageimage"
+                id="Magenest_ImageGallery::image"
                 title="Manage Images"
                 module="Magenest_ImageGallery"
                 sortOrder="10"
@@ -20,7 +20,7 @@
                 resource="Magenest_ImageGallery::image"
         />
         <add
-                id="Magenest_ImageGallery::managegallery"
+                id="Magenest_ImageGallery::gallery"
                 title="Manage Gallery"
                 module="Magenest_ImageGallery"
                 sortOrder="20"

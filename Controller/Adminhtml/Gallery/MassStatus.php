@@ -30,15 +30,21 @@ class MassStatus extends GalleryController
      */
     public function execute()
     {
-        $collection = $this->_filter->getCollection($this->_collectionFactory->create());
-        $status = (int) $this->getRequest()->getParam('status');
+
+        $collection = $this->getRequest()->getParams();
+        $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
+        $cols = $collection['selected'];
+        $status = $collection['status'];
         $totals = 0;
         try {
-            foreach ($collection as $item) {
+            foreach ($cols as $item) {
                 /** @var \Magenest\ImageGallery\Model\Gallery $item */
-                $item->setEnabled($status)->save();
+                $model->load($item);
+                $model->setEnabled($status)->save();
                 $totals++;
             }
+            \Magento\Framework\App\ObjectManager::getInstance()->create('Psr\Log\LoggerInterface')->debug(print_r($collection, true));
+
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been updated.', $totals));
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());

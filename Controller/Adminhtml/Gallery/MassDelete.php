@@ -21,12 +21,16 @@ class MassDelete extends GalleryController
      */
     public function execute()
     {
-        $collections = $this->_filter->getCollection($this->_collectionFactory->create());
+//        $collections = $this->_filter->getCollection($this->_collectionFactory->create());
+        $collection = $this->getRequest()->getParams();
+        $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
+        $cols = $collection['selected'];
         $totals = 0;
         try {
-            foreach ($collections as $item) {
+            foreach ($cols as $item) {
                 /** @var \Magenest\ImageGallery\Model\Gallery $item */
-                $item->delete();
+                $model ->load($item);
+                $model->delete();
                 $totals++;
             }
 

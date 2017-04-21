@@ -39,10 +39,10 @@ class Delete extends \Magento\Backend\App\Action
      * @var UploaderFactory
      */
     protected $_fileUploaderFactory;
-    /**
-     * @var \Magenest\ImageGallery\Model\GalleryFactory
-     */
+
     protected $_galleryFactory;
+
+    protected $layoutFactory;
     /**
      * Save constructor.
      * @param Context $context
@@ -54,11 +54,13 @@ class Delete extends \Magento\Backend\App\Action
         Context $context,
         RequestInterface $request,
         Filesystem $filesystem,
-        UploaderFactory $fileUploaderFactory,
-        \Magenest\ImageGallery\Model\GalleryFactory $galleryFactory
-
+        UploaderFactory $fileUploaderFactory
+//        \Magenest\ImageGallery\Model\GalleryFactory $galleryFactory
+//        \Magento\Framework\View\LayoutFactory $layoutFactory
     ) {
-        $this->_galleryFactory=$galleryFactory;
+
+//        $this->_galleryFactory=$galleryFactory;
+//        $this->layoutFactory = $layoutFactory;
         $this->_request = $request;
         $this->_filesystem = $filesystem;
         $this->_fileUploaderFactory = $fileUploaderFactory;
@@ -72,24 +74,22 @@ class Delete extends \Magento\Backend\App\Action
     public function execute()
     {
         $post = $this->getRequest()->getParam('id');
-
-//        $galleryCollection=$this->_galleryFactory->create()->getCollection();
-//        foreach ($galleryCollection as $gallery){
-//            $str=$gallery->getImageId();
-//            $imageId = explode(',', $str);
-//            if(array_search($post,$imageId)){
-//
-//            }
-//        }
-
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($post) {
             try {
+//                $postObject = new \Magento\Framework\DataObject();
+//                $postObject->setData($post);
+
                 $model = $this->_objectManager->create('Magenest\ImageGallery\Model\Image');
+//                if(isset($post['image_id']))
+//                {
                 $model->load($post);
+//                }
                 $model->delete();
+
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData(false);
                 return $resultRedirect->setPath('*/*/');
+
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
@@ -98,6 +98,7 @@ class Delete extends \Magento\Backend\App\Action
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($post);
                 return $resultRedirect->setPath('imagegallery/image/edit' ,
                     ['id'=>$this->getRequest()->getParam('id')]);
+
             }
         }
 
