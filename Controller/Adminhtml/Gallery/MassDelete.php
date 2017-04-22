@@ -23,9 +23,20 @@ class MassDelete extends GalleryController
     {
 //        $collections = $this->_filter->getCollection($this->_collectionFactory->create());
         $collection = $this->getRequest()->getParams();
+        $resultRedirect = $this->resultRedirectFactory->create();
         $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Gallery');
-        $cols = $collection['selected'];
+        if(isset($collection['selected'])){
+            $cols = $collection['selected'];
+        }
+        else{
+            foreach ($model->getCollection() as $item){
+                $model->load($item->getGalleryId())->delete();
+            }
+            $this->messageManager->addSuccessMessage(__('All records have been deteled.'));
+            return $resultRedirect->setPath('*/*/');
+        }
         $totals = 0;
+
         try {
             foreach ($cols as $item) {
                 /** @var \Magenest\ImageGallery\Model\Gallery $item */
@@ -40,7 +51,7 @@ class MassDelete extends GalleryController
         } catch (\Exception $e) {
             $this->_getSession()->addException($e, __('Something went wrong while delete the post(s).'));
         }
-        $resultRedirect = $this->resultRedirectFactory->create();
+
 
         return $resultRedirect->setPath('*/*/');
 

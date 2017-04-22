@@ -130,6 +130,8 @@ class Main extends Generic implements TabInterface
             'sortorder',
             'text',
             [
+//                'validate_class' => 'validate-number',
+                'class' => 'validate-number input-text',
                 'name' => 'sortorder',
                 'label' => __('Sort Order'),
                 'title' => __('Sort Order'),

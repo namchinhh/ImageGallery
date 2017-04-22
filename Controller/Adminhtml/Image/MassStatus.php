@@ -33,14 +33,21 @@ class MassStatus extends ImageController
 
         $collection = $this->getRequest()->getParams();
         $model = \Magento\Framework\App\ObjectManager::getInstance()->create('Magenest\ImageGallery\Model\Image');
-        $cols = $collection['selected'];
+        //not chose all
+        if(isset($collection['selected'])){
+            $cols = $collection['selected'];
+        }
+        // chose all image
+        else{
+            $cols=$model->getCollection()->getAllIds();
+        }
         $status = $collection['status'];
         $totals = 0;
         try {
             foreach ($cols as $item) {
                 /** @var \Magenest\ImageGallery\Model\Image $item */
                 $model->load($item);
-                $model->setEnabled($status)->save();
+                $model->setStatus($status)->save();
                 $totals++;
             }
             \Magento\Framework\App\ObjectManager::getInstance()->create('Psr\Log\LoggerInterface')->debug(print_r($collection, true));
