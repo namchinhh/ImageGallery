@@ -22,15 +22,11 @@ if ($len):
                 array_push($imageId, $image);
             }
             ?>
-
             <div class="wk_gallery">
                 <div id="maingallery<?php echo $num; ?>" class="wk_gallery_img_container">
                     <a href="<?php echo $this->getUrl() . 'imagegallery/index/gallery/id/' . $gallery->getGalleryId(); ?>"
                        class="wk_gallery_album">
-
                         <?php
-
-
                         $imageCollection->load($imageId[0]);
                         $urlImage = $this->getUrl() . 'pub/media/' . $imageCollection->getImage();
                         ?>

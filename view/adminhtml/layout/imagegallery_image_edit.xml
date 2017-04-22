@@ -10,9 +10,5 @@
             <block class="Magenest\ImageGallery\Block\Adminhtml\Image\Edit\Tabs" name="imagegallery_image_edit_tabs">
             </block>
         </referenceContainer>
-
-        <!--<referenceContainer name="deletepopup">-->
-            <!--<block class="Magenest\ImageGallery\Block\Adminhtml\Image\Edit\DeletePopup" template="delete.phtml"/>-->
-        <!--</referenceContainer>-->
     </body>
 </page>
